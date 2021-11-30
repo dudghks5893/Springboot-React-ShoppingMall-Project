@@ -1,23 +1,12 @@
-import { useState } from 'react';
+import { useCallback } from "react";
+import { Link } from "react-router-dom";
+import { categoryIProps } from "./header";
 
+const CategoryList = ({setCategory}: categoryIProps) => {
 
-const CategoryList = () => {
-  const [list, setList]=useState(
-    [{
-      id:1,
-      name:"top",
-      kind:"knit"
-    },{
-      id:2,
-      name:"top",
-      kind:"dress"
-    },{
-      id:1,
-      name:"top",
-      kind:"outer"
-    }]
-)
-
+  const onCloseCategory = useCallback(()=>{
+    setCategory(false)
+  },[])
 
   return (
     <div className="hide-section">
@@ -25,7 +14,7 @@ const CategoryList = () => {
         <div className="sec01">
           <h3>상의</h3>
           <ul>
-            <li>전체보기</li>
+            <li><Link to={'/productlist'} onClick={onCloseCategory}>전체보기</Link></li>
             <li>아우터</li>
             <li>티</li>
             <li>니트</li>

@@ -15,6 +15,10 @@ export interface LogInReqProfile {
   password: string,
 }
 
+export interface LogInResProfile {
+  authorization: string,
+}
+
 export interface KakaoLogInReqProfile {
   code: string,
 }
@@ -24,10 +28,6 @@ export interface KakaoLogInResProfile {
   authorization: string,
 }
 
-
-export interface LogInResProfile {
-  authorization: string,
-}
 
 export interface LogOutProfile {
   authorization: null,
@@ -44,7 +44,7 @@ export type UserState = {
 
 //initialStat
 const initialState: UserState = {
-  signup:asyncState.initial(),
+  signup: asyncState.initial(),
   login: asyncState.initial(),
 }
 
@@ -103,8 +103,6 @@ export const kakaoLogInRequestAction =(payload:any)=>({
 })
 
 export type KakaoLogInAction = ActionType<typeof kakaoLogInAsync>
-
-
 
 
 export const logOutAsync = createAsyncAction(
