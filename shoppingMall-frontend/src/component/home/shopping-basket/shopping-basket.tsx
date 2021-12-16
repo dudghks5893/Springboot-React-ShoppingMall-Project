@@ -1,19 +1,19 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../reducers';
-import BasketContent from './basket-content';
+import { Switch, useRouteMatch, Route } from 'react-router';
+import BasketProduct from './basket-product';
+import PaymentProduct from './payment/payment-product';
 
 const ShoppingBasket = () => {
-
-  const {userCart} = useSelector((state:RootState) => state.product);
-
-  return (
-    <section className="basket-zone">
-      {userCart.map((cart) => 
-        <BasketContent key={cart.id} cart={cart} />
-      )}
-    </section>
-  );
-};
+  const match = useRouteMatch();
+  return(
+    <Switch>
+      <Route path={`${match.path}`} exact>
+        <BasketProduct />
+      </Route>
+      <Route path={`${match.path}/payment`}>
+        <PaymentProduct />
+      </Route>
+    </Switch>  
+  );}
 
 export default ShoppingBasket;
